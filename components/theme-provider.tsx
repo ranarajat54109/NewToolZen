@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import type { ThemeProviderProps } from 'next-themes';
+
+type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
 if (typeof window !== 'undefined') {
   const originalError = console.error;
@@ -14,6 +15,13 @@ if (typeof window !== 'undefined') {
   };
 }
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+export function ThemeProvider({
+  children,
+  ...props
+}: ThemeProviderProps) {
+  return (
+    <NextThemesProvider {...props}>
+      {children}
+    </NextThemesProvider>
+  );
 }
