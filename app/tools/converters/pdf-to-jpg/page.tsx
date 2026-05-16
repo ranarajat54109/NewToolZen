@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { FileUp, FileImage, Download, Trash2, RefreshCw } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 import { toast } from 'sonner';
 
 // We will configure the worker dynamically based on the exact version inside the useEffect

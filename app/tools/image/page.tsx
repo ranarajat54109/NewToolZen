@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Smile, Sigma, QrCode, Barcode, Crop, Maximize, FileImage } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 import { useStore } from '@/store/useStore';
 import { useDeferredValue, useMemo } from 'react';
 

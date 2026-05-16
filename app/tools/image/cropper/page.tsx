@@ -1,11 +1,16 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
+import dynamic from 'next/dynamic';
+import type { Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+
+// Lazy-load the cropper widget; it only mounts after an image is chosen.
+const ReactCrop = dynamic(() => import('react-image-crop'), { ssr: false });
 import { Upload, Download, Image as ImageIcon } from 'lucide-react';
 
-function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
+async function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
+  const { centerCrop, makeAspectCrop } = await import('react-image-crop');
   return centerCrop(
     makeAspectCrop(
       {
@@ -39,10 +44,10 @@ export default function ImageCropper() {
     }
   }
 
-  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+  async function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     if (aspect) {
       const { width, height } = e.currentTarget;
-      setCrop(centerAspectCrop(width, height, aspect));
+      setCrop(await centerAspectCrop(width, height, aspect));
     }
   }
 
@@ -120,7 +125,7 @@ export default function ImageCropper() {
                   setAspect(newAspect);
                   if (imgRef.current) {
                     const { width, height } = imgRef.current;
-                    setCrop(centerAspectCrop(width, height, newAspect));
+                    centerAspectCrop(width, height, newAspect).then(setCrop);
                   }
                 }
               }}

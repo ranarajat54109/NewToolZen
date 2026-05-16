@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Copy } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 import { toast } from 'sonner';
 
 type PaletteType = 'Analogous' | 'Monochromatic' | 'Split Complementary' | 'Triadic' | 'Tetradic' | 'Complementary';

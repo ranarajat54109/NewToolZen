@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { PaintBucket, Pipette, Palette, SwatchBook } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 
 const colorTools = [
   { name: 'Random Colors', href: '/tools/colors/random', icon: PaintBucket, borderClass: 'hover:border-cyan-500' },

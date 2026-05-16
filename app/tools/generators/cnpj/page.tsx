@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, RefreshCw, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 import { toast } from 'sonner';
 
 function generateRandomCnpj(format: boolean) {

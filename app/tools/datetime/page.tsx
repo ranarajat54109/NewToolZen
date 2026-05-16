@@ -15,7 +15,7 @@ import {
   Asterisk,
   History as UnixClock
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 
 const mainTools = [
   { name: 'Date Difference', path: '/tools/datetime/date-difference', icon: CalendarMinus, color: 'text-blue-500' },

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Play, Pause, RotateCw, Maximize, Minimize } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 
 const PRESET_TIMES = [
   { label: '5 Minutes', value: 5 * 60 },

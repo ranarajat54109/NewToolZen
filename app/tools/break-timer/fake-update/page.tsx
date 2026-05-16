@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { MonitorPlay, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 
 const OS_STYLES = [
   { id: 'win11', name: 'Windows 11 Update' },

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { FileUp, FileDown, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -31,6 +30,9 @@ export default function PdfToWordConverter() {
     setIsProcessing(true);
 
     try {
+      // Lazy-load docx (~heavy) only when a conversion actually runs.
+      const { Document, Packer, Paragraph, TextRun } = await import('docx');
+
       const arrayBuffer = await pdfFile.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       

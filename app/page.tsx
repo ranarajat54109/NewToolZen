@@ -4,7 +4,7 @@ import { TOOLS } from '@/lib/tools-data';
 import { useDeferredValue, useMemo } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 import { useStore } from '@/store/useStore';
 
 const containerVariants = {

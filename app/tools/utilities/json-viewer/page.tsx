@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, Check, FileJson, AlertCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 import { toast } from 'sonner';
 
 // Lightweight regex syntax highlighter for JSON

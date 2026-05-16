@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import QRCodeStyling from 'qr-code-styling';
 import { Download } from 'lucide-react';
 
 export default function QRCodeGenerator() {
@@ -18,20 +17,30 @@ export default function QRCodeGenerator() {
   const qrCode = useRef<any>(null);
 
   useEffect(() => {
-    qrCode.current = new QRCodeStyling({
-      width: width,
-      height: height,
-      data: data,
-      margin: 10,
-      dotsOptions: { color: dotsColor, type: dotsType as any },
-      cornersSquareOptions: { color: cornersSquareColor, type: cornersSquareType as any },
-      backgroundOptions: { color: backgroundColor }
-    });
-    
-    if (qrRef.current) {
-      qrRef.current.innerHTML = '';
-      qrCode.current.append(qrRef.current);
-    }
+    let cancelled = false;
+    // qr-code-styling is browser-only and heavy: load it on mount only.
+    (async () => {
+      const { default: QRCodeStyling } = await import('qr-code-styling');
+      if (cancelled) return;
+      qrCode.current = new QRCodeStyling({
+        width: width,
+        height: height,
+        data: data,
+        margin: 10,
+        dotsOptions: { color: dotsColor, type: dotsType as any },
+        cornersSquareOptions: { color: cornersSquareColor, type: cornersSquareType as any },
+        backgroundOptions: { color: backgroundColor }
+      });
+
+      if (qrRef.current) {
+        qrRef.current.innerHTML = '';
+        qrCode.current.append(qrRef.current);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

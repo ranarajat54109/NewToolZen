@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { PDFDocument } from 'pdf-lib';
 import { FileUp, Image as ImageIcon, Trash2, Download, RefreshCw } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 import { toast } from 'sonner';
 
 interface UploadedImage {
@@ -40,6 +39,8 @@ export default function JpgToPdfConverter() {
     setIsProcessing(true);
 
     try {
+      // Lazy-load pdf-lib only when a conversion actually runs.
+      const { PDFDocument } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.create();
 
       for (const imgWrapper of images) {

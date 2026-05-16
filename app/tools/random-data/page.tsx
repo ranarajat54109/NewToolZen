@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Shuffle, Lock, Building, CreditCard, Fingerprint, Hash, UserCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 
 const mainTools = [
   { name: 'Random Number', href: '/tools/generators/random-number', icon: Shuffle },

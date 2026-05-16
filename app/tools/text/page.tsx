@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Type, FileType, AlignLeft, Calculator, FileEdit, GitCompare, LayoutTemplate } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '@/lib/motion';
 import { useStore } from '@/store/useStore';
 import { useDeferredValue, useMemo } from 'react';
 

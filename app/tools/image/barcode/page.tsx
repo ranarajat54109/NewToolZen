@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import Barcode from 'react-barcode';
+import dynamic from 'next/dynamic';
 import { Download } from 'lucide-react';
+
+// react-barcode is only needed once the user renders a barcode.
+const Barcode = dynamic(() => import('react-barcode'), { ssr: false });
 
 export default function BarcodeGenerator() {
   const [value, setValue] = useState('123456789012');

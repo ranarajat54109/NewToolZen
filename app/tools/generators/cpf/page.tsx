@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, RefreshCw, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/lib/motion';
 import { toast } from 'sonner';
 
 function generateRandomCpf(format: boolean) {

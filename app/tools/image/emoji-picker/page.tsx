@@ -1,7 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import EmojiPicker, { Theme, EmojiClickData } from 'emoji-picker-react';
+import dynamic from 'next/dynamic';
+import type { EmojiClickData, Theme as ThemeType } from 'emoji-picker-react';
+
+// emoji-picker-react is large; load it only when this tool is open.
+const EmojiPicker = dynamic(() => import('emoji-picker-react'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[450px] flex items-center justify-center text-slate-400">
+      Loading emoji picker…
+    </div>
+  ),
+});
 import { useTheme } from 'next-themes';
 import { Copy, Check } from 'lucide-react';
 import { toast } from 'sonner';
@@ -37,7 +48,7 @@ export default function EmojiPickerTool() {
             <div className="shadow-2xl rounded-2xl overflow-hidden p-1 bg-white dark:bg-[#222222] inline-block border border-slate-200 dark:border-slate-800">
               <EmojiPicker 
                 onEmojiClick={onEmojiClick}
-                theme={theme === 'dark' ? Theme.DARK : Theme.LIGHT}
+                theme={(theme === 'dark' ? 'dark' : 'light') as ThemeType}
                 width="100%"
                 height={500}
               />

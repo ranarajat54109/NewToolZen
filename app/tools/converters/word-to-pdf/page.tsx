@@ -1,8 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-import * as mammoth from 'mammoth';
 import { FileUp, FileDown, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -22,6 +20,10 @@ export default function WordToPdfConverter() {
     setIsProcessing(true);
 
     try {
+      // Lazy-load mammoth + pdf-lib only when a conversion actually runs.
+      const [mammoth, { PDFDocument, rgb, StandardFonts }] =
+        await Promise.all([import('mammoth'), import('pdf-lib')]);
+
       const arrayBuffer = await wordFile.arrayBuffer();
       const result = await mammoth.extractRawText({ arrayBuffer });
       const text = result.value;
